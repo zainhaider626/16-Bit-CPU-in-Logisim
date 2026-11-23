@@ -1,35 +1,40 @@
-# 16-Bit CPU Architecture in Logisim
+# 16 Bit CPU in Logisim
 
-## 📌 Project Overview
-This project goes beyond basic logic circuits—it is an exploration of how a processor truly “thinks” at scale. Scaling up to a 16-bit architecture introduces advanced challenges in bus routing, memory addressing, and data flow. By recreating the exact fundamentals that power modern embedded processors from the ground up, this project demonstrates complete CPU execution in a simplified, highly visual environment.
+A 16 bit processor datapath built from gates, registers and arithmetic blocks in Logisim Evolution, with a dot matrix display for visual output.
 
-## 💻 Core Specifications
-* **Architecture:** 16-bit (expanded data range: 0–65,535).
-* **Program Counter:** 16-bit with synchronous clock and reset control, enabling a vastly larger memory address space.
-* **Accumulator Register:** 16-bit central unit for heavy arithmetic and logic results.
-* **ALU (Arithmetic Logic Unit):** Supports advanced 16-bit addition, subtraction, AND, OR, XOR, and high-speed comparison operations.
-* **Control Unit:** Hardwired to decode complex machine instructions, generate precise control signals, and orchestrate wider data flow across the internal bus.
-* **General Purpose Registers (I/O):** Expanded for smooth, high-bandwidth communication with external inputs and outputs.
-* **RAM Integration:** 16-bit word-addressable temporary memory for larger program instructions and data storage.
-* **ROM / Instruction Set:** A custom set of predefined machine-level instructions optimized for 16-bit operations.
-* **Output:** Connected to a multi-digit Hex/7-Segment Display array to visualize 16-bit real-time computation results.
-* **Cycle Execution:** Implements the classic, robust Fetch → Decode → Execute instruction cycle.
+## Overview
 
-## 🎯 Key Highlights
-* **From Gates to CPU:** Shows how fundamental binary logic and flip-flops scale into a highly capable, complete working processor.
-* **Real-World Parallels:** Demonstrates the exact same instruction cycle used by commercial processors—built visibly into a 16-bit framework.
-* **Functional Execution:** Goes beyond basic simulation; this CPU actually executes complex instructions step-by-step with real-time visible output.
-* **Practical Learning:** Deepened my practical understanding of instruction pipelining, extended memory management, control flow, and hardware-software interaction.
+This project extends the principles of a simple 8 bit design to a 16 bit data width. Each major block is a separate sub circuit, and the processor drives a frame buffer so results can be seen on a dot matrix display and a terminal.
 
-## ✨ Conclusion & Future Outlook
-Every powerful processor—from the one in a smartphone to supercomputers running AI—is built on these exact same principles. By designing this 16-bit CPU, I have bridged the gap between theoretical logic and practical hardware design, strengthening my foundation in computer architecture. 
+## Architecture
 
-This project is a massive leap forward in my journey toward creating more advanced embedded systems, and exploring how custom hardware innovation can drive the future of intelligent robotics and real-world automation.
+| Block | Purpose |
+|---|---|
+| Program counter | Counter with clock enable and reset control |
+| Accumulator | Primary register for arithmetic results |
+| B register | Second ALU operand |
+| X and Y registers | Additional working registers with separate read and write control |
+| ALU | Add, subtract, AND, OR, XOR, NAND, NOR and NOT operations |
+| Comparator | Equal, greater and less comparison |
+| Flags register | Carry, borrow, zero, equal, greater and less flags |
+| Frame buffer | Stores pixel data for the dot matrix display |
+| Output | Dot matrix display and TTY terminal |
 
+Control signals such as `ADD`, `SUB`, `JUMP`, `HALT` and `RESET` are exposed as labeled inputs, with a manual clock tick for step by step execution.
 
-## How to Run the Simulation
-1. Download and install [Logisim](http://www.cburch.com/logisim/).
-2. Clone this repository or download the `.circ` files.
-3. Open the main circuit file in Logisim.
-4. Load your 16-bit machine code or test program into the ROM module.
-5. Enable the clock ticks (`Ctrl + K` or `Simulate > Ticks Enabled`) to watch the flip-flops update and the CPU execute the code.
+## Repository Contents
+
+| Path | Description |
+|---|---|
+| `circuit/CPU16Bit.circ` | Complete CPU project |
+
+## Running the Simulation
+
+1. Install [Logisim Evolution](https://github.com/logisim-evolution/logisim-evolution) version 4.0 or newer.
+2. Open `circuit/CPU16Bit.circ` and select the `main` circuit.
+3. Enable clock ticks with `Ctrl + K`, or step manually with the tick control.
+4. Observe the registers, flags and display while the CPU runs.
+
+## Author
+
+Zain Haider, Hardware and Robotics Engineer. Co founder of Robetix and founder of [Nvisco](https://nvisco.com).
